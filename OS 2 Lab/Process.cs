@@ -16,7 +16,7 @@ namespace OS_2_Lab
         {
             this.quantTime = quantTime;
             this.currentTime = quantTime;
-            this.description += (procNumb+1);
+            this.description += (procNumb + 1);
 
             threads = new List<Thread>();
             for (int i = 0; i < rand.Next(1, 5); i++)

@@ -11,7 +11,7 @@ namespace OS_2_Lab
 
         public Thread(int threadNumb, int quantTime)
         {
-            this.description += (threadNumb+1);
+            this.description += (threadNumb + 1);
             this.quantTime = quantTime;
         }
 
