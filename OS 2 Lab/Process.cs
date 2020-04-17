@@ -63,11 +63,6 @@ namespace OS_2_Lab
             return description;
         }
 
-        public void restoreCurrentQuantTime()
-        {
-            currentTime = quantTime;
-        }
-
         public string getThreadsDescription()
         {
             string str = "";
@@ -78,5 +73,31 @@ namespace OS_2_Lab
             }
             return str;
         }
+
+        public void run()
+        {
+            Console.WriteLine(getThread().getDescription() + " quant = " + getThread().getQuantTime());
+            if (getThread().getQuantTime() >= 0)
+            {
+                getThread().decreaseTime();
+                decreaseCurrentTime();
+                if (getThread().getQuantTime() == 0)
+                {
+                    Console.WriteLine(getThread().getDescription() + " завершил свою работу");
+                    deleteThread();
+                }
+            }
+        }
+
+        public bool restore()
+        {
+            if (getCurrentTime() == 0 && getThread().getQuantTime() > 0)
+            {
+                currentTime = quantTime;
+                return true;
+            }
+            return false;
+        }
+
     }
 }

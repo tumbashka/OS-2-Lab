@@ -39,17 +39,7 @@ namespace OS_2_Lab
                     Console.WriteLine("Выполняется " + processes[i].getDescription() + " QuantTime = " + processes[i].getQuantTime());
                     while (processes[i].getCurrentTime() > 0)
                     {
-                        Console.WriteLine(processes[i].getThread().getDescription() + " quant = " + processes[i].getThread().getQuantTime());
-                        if (processes[i].getThread().getQuantTime() >= 0)
-                        {
-                            processes[i].getThread().decreaseTime();
-                            processes[i].decreaseCurrentTime();
-                            if (processes[i].getThread().getQuantTime() == 0)
-                            {
-                                Console.WriteLine(processes[i].getThread().getDescription() + " завершил свою работу");
-                                processes[i].deleteThread();
-                            }
-                        }
+                        processes[i].run();
                         if (processes[i].isEmpty())
                         {
                             Console.WriteLine(processes[i].getDescription() + " завершил свою работу");
@@ -57,9 +47,8 @@ namespace OS_2_Lab
                             i--;
                             break;
                         }
-                        if (processes[i].getCurrentTime() == 0 && processes[i].getThread().getQuantTime() > 0)
+                        if (processes[i].restore())
                         {
-                            processes[i].restoreCurrentQuantTime();
                             break;
                         }
                     }
